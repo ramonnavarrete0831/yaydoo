@@ -1,0 +1,11 @@
+version: '3.4'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: 'app-api/server:latest'
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./docker-volume:/srv/host_files

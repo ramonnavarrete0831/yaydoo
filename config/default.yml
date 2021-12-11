@@ -1,0 +1,10 @@
+server:
+  port: 8080
+
+db:
+  type: "mysql"
+  port: 3306
+  database: "cochi_peek"
+
+jwt:
+  expiresIn: 3600
