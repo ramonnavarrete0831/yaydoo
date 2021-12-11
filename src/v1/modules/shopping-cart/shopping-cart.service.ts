@@ -24,13 +24,11 @@ export class ShoppingCartService {
     async create(): Promise<{public_id: string}> {
         const public_id = uuidv4();
         const tokenCart = await this.shoppingCartRepository.insertCart(public_id);
-
         if (!tokenCart) {
             throw new InternalServerErrorException(
               `Ups! no pudimos generar el carrito de compras, intente nuevamente.`
             );
         }
-
         return {public_id: public_id};
     }
 

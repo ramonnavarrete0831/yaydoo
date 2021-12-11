@@ -37,7 +37,8 @@ import { ConektaService } from '../conekta/conekta.service';
     ProductController,
     PointOfSaleController,
     ShoppingCartController,
-    OrderController],
+    OrderController
+  ],
   providers: [
     WhatsappService,
     ConektaService,

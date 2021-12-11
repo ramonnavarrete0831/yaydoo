@@ -3,7 +3,7 @@ import { Repository, EntityRepository } from 'typeorm';
 import { Logger } from '@nestjs/common';
 import { ShoppingCart } from '../../entities/shopping-cart.entity';
 import { Product } from '../../entities/product.entity';
-import { CartDetail } from 'src/entities/cart-detail.entity';
+import { CartDetail } from '../../entities/cart-detail.entity';
 
 @EntityRepository(CartDetail)
 export class CartDetailRepository extends Repository<CartDetail>{
