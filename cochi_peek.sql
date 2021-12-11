@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 29-11-2021 a las 10:57:25
+-- Tiempo de generación: 11-12-2021 a las 17:55:53
 -- Versión del servidor: 5.7.16
 -- Versión de PHP: 5.6.30
 
@@ -54,6 +54,22 @@ CREATE TABLE `card_payments` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `cart_details`
+--
+
+CREATE TABLE `cart_details` (
+  `id` int(11) NOT NULL,
+  `shopping_cart_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `price` int(11) NOT NULL,
+  `qty` int(11) NOT NULL,
+  `total` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `categories`
 --
 
@@ -70,11 +86,11 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`id`, `name`, `friendly_url`, `available`) VALUES
 (5, 'Por Kilos', 'por-kilos', 1),
-(2, 'Tortas', 'tortas', 0),
+(2, 'Tortas', 'tortas', 1),
 (1, 'Tacos', 'tacos', 1),
-(3, 'Ordenes', 'ordenes', 0),
+(3, 'Ordenes', 'ordenes', 1),
 (6, 'Bebidas', 'bebidas', 1),
-(4, 'Combos', 'combos', 0);
+(4, 'Combos', 'combos', 1);
 
 -- --------------------------------------------------------
 
@@ -109,6 +125,13 @@ CREATE TABLE `conekta_customers` (
   `user_id` int(11) NOT NULL,
   `cus_id` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `conekta_customers`
+--
+
+INSERT INTO `conekta_customers` (`id`, `user_id`, `cus_id`) VALUES
+(1, 1, 'cus_2pTbzQ5dUEMSdFjy4');
 
 -- --------------------------------------------------------
 
@@ -157,7 +180,7 @@ CREATE TABLE `order_deliveries` (
   `order_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `delivery_type` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `datetime_of_delivery` datetime NOT NULL,
+  `datetime_of_delivery` int(11) NOT NULL,
   `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `department` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `lat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -382,6 +405,13 @@ CREATE TABLE `profiles` (
   `pop_subscription` int(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `profiles`
+--
+
+INSERT INTO `profiles` (`id`, `user_id`, `first_name`, `last_name`, `birthday`, `gender`, `mobile_phone`, `phone`, `uri_picture`, `registration_day`, `sms_subscription`, `email_subscription`, `push_subscription`, `pop_subscription`) VALUES
+(1, 1, 'Ramón Armando', 'Navarrete Dzul', '1992-08-31', 1, '9992743290', '9992532479', NULL, 1598850000, 1, 1, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -413,9 +443,16 @@ INSERT INTO `roles` (`id`, `role`) VALUES
 CREATE TABLE `shopping_carts` (
   `id` int(11) NOT NULL,
   `public_id` varchar(36) NOT NULL,
-  `detail` longtext,
-  `expires at` int(11) NOT NULL
+  `total` double(18,2) NOT NULL,
+  `expires_at` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `shopping_carts`
+--
+
+INSERT INTO `shopping_carts` (`id`, `public_id`, `total`, `expires_at`) VALUES
+(18, 'b2cb4696-45a0-473b-8d09-4ebd6c15adbb', 0.00, 1639268425);
 
 -- --------------------------------------------------------
 
@@ -513,6 +550,13 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Volcado de datos para la tabla `users`
+--
+
+INSERT INTO `users` (`id`, `role_id`, `password`, `salt`, `last_password_update`, `web_push_token`, `mobile_device`, `mobile_push_token`, `deny_access`) VALUES
+(1, 5, '$2b$10$xQ01nDoktl0Hgp73SOfOAeqyni394UTBCfvlbbRqGwWAEa64QKXeC', '$2b$10$xQ01nDoktl0Hgp73SOfOAe', 1621177442, NULL, NULL, NULL, 0);
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -526,6 +570,12 @@ ALTER TABLE `cards`
 -- Indices de la tabla `card_payments`
 --
 ALTER TABLE `card_payments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `cart_details`
+--
+ALTER TABLE `cart_details`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -661,7 +711,8 @@ ALTER TABLE `roles`
 -- Indices de la tabla `shopping_carts`
 --
 ALTER TABLE `shopping_carts`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `public_id` (`public_id`);
 
 --
 -- Indices de la tabla `stores`
@@ -706,6 +757,12 @@ ALTER TABLE `card_payments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `cart_details`
+--
+ALTER TABLE `cart_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
+
+--
 -- AUTO_INCREMENT de la tabla `categories`
 --
 ALTER TABLE `categories`
@@ -721,7 +778,7 @@ ALTER TABLE `codes`
 -- AUTO_INCREMENT de la tabla `conekta_customers`
 --
 ALTER TABLE `conekta_customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `mycodes`
@@ -733,19 +790,19 @@ ALTER TABLE `mycodes`
 -- AUTO_INCREMENT de la tabla `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3857;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3927;
 
 --
 -- AUTO_INCREMENT de la tabla `order_deliveries`
 --
 ALTER TABLE `order_deliveries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5203;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5260;
 
 --
 -- AUTO_INCREMENT de la tabla `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5959;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6104;
 
 --
 -- AUTO_INCREMENT de la tabla `payments`
@@ -793,7 +850,7 @@ ALTER TABLE `product_images`
 -- AUTO_INCREMENT de la tabla `profiles`
 --
 ALTER TABLE `profiles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -805,7 +862,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `shopping_carts`
 --
 ALTER TABLE `shopping_carts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `stores`
@@ -823,7 +880,7 @@ ALTER TABLE `store_agents`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

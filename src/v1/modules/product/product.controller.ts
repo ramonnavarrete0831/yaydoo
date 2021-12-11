@@ -13,8 +13,8 @@ export class ProductController {
     constructor(private productService:ProductService){}
 
     @Get("/list")
-    async lista(@Query(ValidationPipe) getProductFilterDto: GetProductFilterDto, @Query(ValidationPipe) paginationDto: PaginationDto): Promise<{ products: Product[]; meta: any, links: any}> {
-        this.logger.verbose(`Petición para obtener la lista de productos`);
+    async list(@Query(ValidationPipe) getProductFilterDto: GetProductFilterDto, @Query(ValidationPipe) paginationDto: PaginationDto): Promise<{ products: Product[]; meta: any, links: any}> {
+        this.logger.verbose(`Petición para obtener la lista de productos de la tienda`);
         const { items, meta, links } =  await this.productService.list(getProductFilterDto,paginationDto);
         return { products: items, meta, links} ;
     }

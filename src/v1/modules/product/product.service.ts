@@ -22,7 +22,7 @@ export class ProductService {
     ){}
 
     async list(getProductFilterDto: GetProductFilterDto, paginationDto: PaginationDto):Promise<Pagination<Product>>{
-        const { product, category , sku, min_price, max_price} = getProductFilterDto;
+        const {  category } = getProductFilterDto;
        
         if(category){
             const categoryResult = await this.categoryRepository.getCategoryByFriendlyUrl(category);
@@ -33,6 +33,16 @@ export class ProductService {
             }
             getProductFilterDto.category_id = categoryResult.id;
         }
+        
+        const url = this.createUrl(getProductFilterDto);
+        paginationDto.route=`v.1/product/list${url}`;
+
+        const productsResult = await this.productRepository.findProducts(getProductFilterDto, paginationDto);
+        return  productsResult;
+    }
+
+    createUrl(getProductFilterDto: GetProductFilterDto):String{
+        const { product, category , sku, min_price, max_price} = getProductFilterDto;
         let url = "?";
         let params = { "product":product, "category":category,"sku":sku};
 
@@ -44,19 +54,15 @@ export class ProductService {
         }else if(max_price && !min_price){
             params['max_price']=max_price;
         }
-        
+    
         for(const clave in params) {
             if(params[clave]!=undefined){
                 url += `${clave}=${params[clave]}&`;
             }
         }
 
-        url = url.substring(0, url.length - 1)
-        paginationDto.route=`v.1/product/list${url}`;
-
-
-        const productsResult = await this.productRepository.findProducts(getProductFilterDto, paginationDto);
-        return  productsResult;
+        url = url.substring(0, url.length - 1);
+        return url;
     }
 
     async packages(paginationDto: PaginationDto, available:boolean):Promise<Pagination<Product>>{
