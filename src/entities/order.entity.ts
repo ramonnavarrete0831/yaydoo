@@ -1,17 +1,14 @@
 import { Double, OneToMany, OneToOne, JoinColumn } from 'typeorm';
 import {
     Column,
-    Entity,
-    PrimaryGeneratedColumn,
-    BaseEntity,
+    Entity
   } from "typeorm";
 import { OrderDetail } from './order-detail.entity';
 import { OrderDelivery } from './order-delivery.entity';
+import { IdPrimaryKey } from './id-primary-key';
   
-  @Entity("orders")
-  export class Order extends BaseEntity {
-    @PrimaryGeneratedColumn()
-    id: number;
+@Entity("orders")
+export class Order extends IdPrimaryKey {
   
     @Column("varchar")
     public_id: string;

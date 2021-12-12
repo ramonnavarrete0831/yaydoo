@@ -47,11 +47,11 @@ export class ShoppingCartService {
         const { qty } = cartAddItemDto;
         const shoppingCart = await this.verifyProcess(tokenDto);
         const { public_id, cartDetail} = shoppingCart;
-
         const product = await this.verifyProduct(cartAddItemDto);
+        
         const { price } = product;
 
-        let quantity = parseInt(qty);
+        let quantity = qty;
 
         if(quantity<1){
             throw new BadRequestException(
@@ -59,10 +59,9 @@ export class ShoppingCartService {
             );
         }
 
-
         const findProduct = _.find(cartDetail, function(item) {return item.product_id == product_id ? item : null; });
         const filterProduct = _.filter(cartDetail, function(item) {return item.product_id != product_id ? item : null; });
-
+        
         let cartTotal = 0 ;
 
         if(findProduct){
@@ -100,7 +99,7 @@ export class ShoppingCartService {
         
         const findProduct = _.find(cartDetail, function(item) {return item.id == cartDetailId ? item : null; });
         const filterProduct = _.filter(cartDetail, function(item) {return item.id != cartDetailId ? item : null; });
-
+        
         let cartTotal = 0 ;
 
         if(!findProduct){

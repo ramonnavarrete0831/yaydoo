@@ -6,7 +6,7 @@ import { ShoppingCart } from '../../entities/shopping-cart.entity';
 import { User } from '../../entities/user.entity';
 import * as _ from "lodash";
 import { OrderDetail } from '../../entities/order-detail.entity';
-import { CartDetail } from 'src/entities/cart-detail.entity';
+import { CartDetail } from '../../entities/cart-detail.entity';
 import { OrderInfoDto } from '../modules/dto/order-info.dto';
 import { OrderDelivery } from '../../entities/order-delivery.entity';
 

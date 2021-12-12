@@ -1,10 +1,9 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, Double, ManyToOne, JoinColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, JoinColumn } from 'typeorm';
 import { ShoppingCart } from './shopping-cart.entity';
+import { IdPrimaryKey } from './id-primary-key';
 
 @Entity("cart_details")
-export class CartDetail extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+export class CartDetail extends IdPrimaryKey {
 
   @Column("int")
   shopping_cart_id: number;
@@ -16,13 +15,13 @@ export class CartDetail extends BaseEntity {
   name: string;
 
   @Column("decimal")
-  price: Double;
+  price: number;
 
   @Column("int")
   qty: number;
 
   @Column("decimal")
-  total: Double;
+  total: number;
 
   @ManyToOne(
     (type) => ShoppingCart,

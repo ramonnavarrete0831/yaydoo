@@ -1,10 +1,9 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { IdPrimaryKey } from './id-primary-key';
 
 @Entity({ name: "profiles" })
-export class Profile extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class Profile extends IdPrimaryKey {
+  
   @Column("int")
   user_id: number;
 

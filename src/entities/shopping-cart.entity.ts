@@ -1,11 +1,10 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Column, Entity, OneToMany } from 'typeorm';
 import { CartDetail } from './cart-detail.entity';
+import { IdPrimaryKey } from './id-primary-key';
 
 @Entity("shopping_carts")
-export class ShoppingCart extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class ShoppingCart extends IdPrimaryKey{
+  
   @Column("varchar")
   public_id: string;
 

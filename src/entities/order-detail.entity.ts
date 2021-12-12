@@ -1,16 +1,10 @@
 import { Double, ManyToOne, JoinColumn } from 'typeorm';
 import { Order } from './order.entity';
-import {
-    Column,
-    Entity,
-    PrimaryGeneratedColumn,
-    BaseEntity,
-  } from "typeorm";
+import { IdPrimaryKey } from './id-primary-key';
+import {Column,Entity} from "typeorm";
   
-  @Entity("order_details")
-  export class OrderDetail extends BaseEntity {
-    @PrimaryGeneratedColumn()
-    id: number;
+@Entity("order_details")
+export class OrderDetail extends IdPrimaryKey {
 
     @Column("int")
     order_id: number;

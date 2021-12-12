@@ -1,15 +1,8 @@
-import {
-    Column,
-    Entity,
-    PrimaryGeneratedColumn,
-    BaseEntity,
-  } from "typeorm";
+import { IdPrimaryKey } from './id-primary-key';
+import {Column,Entity} from "typeorm";
   
   @Entity("categories")
-  export class Category extends BaseEntity {
-    @PrimaryGeneratedColumn()
-    id: number;
-  
+  export class Category extends IdPrimaryKey {
     @Column("varchar")
     name: string;
 

@@ -1,18 +1,15 @@
 import {
   Column,
   Entity,
-  PrimaryGeneratedColumn,
-  BaseEntity,
   ManyToMany,
   JoinTable,
 } from "typeorm";
 
 import { Permission } from "./permission.entity";
+import { IdPrimaryKey } from './id-primary-key';
 
 @Entity("roles")
-export class Role extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+export class Role extends IdPrimaryKey {
 
   @Column("varchar")
   role: string;

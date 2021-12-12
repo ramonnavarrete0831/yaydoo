@@ -5,7 +5,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { User } from '../../../entities/user.entity';
 import { GetUser } from '../../../auth/get-user.decorators';
 import { OrderInfoDto } from '../dto/order-info.dto';
-import { Order } from 'src/entities/order.entity';
+import { Order } from '../../../entities/order.entity';
 
 @Controller('order')
 export class OrderController {

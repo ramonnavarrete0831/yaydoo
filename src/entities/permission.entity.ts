@@ -1,9 +1,8 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {  Column, Entity } from "typeorm";
+import { IdPrimaryKey } from './id-primary-key';
 
 @Entity("permissions")
-export class Permission extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+export class Permission extends IdPrimaryKey {
 
   @Column("varchar")
   name: string;

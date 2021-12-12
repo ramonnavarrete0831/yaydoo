@@ -2,21 +2,11 @@ import { PointOfSale } from './point-of-sale.entity';
 import { Category } from './category.entity';
 import { OneToOne, JoinColumn, OneToMany } from 'typeorm';
 import { ProductImage } from './product-image.entity';
-
-import {
-    Column,
-    Entity,
-    PrimaryGeneratedColumn,
-    BaseEntity,
-    Double,
-    ManyToMany,
-    JoinTable,
-  } from "typeorm";
+import { IdPrimaryKey } from './id-primary-key';
+import {Column, Entity, ManyToMany,JoinTable} from "typeorm";
  
-  @Entity("products")
-  export class Product extends BaseEntity {
-    @PrimaryGeneratedColumn()
-    id: number;
+@Entity("products")
+export class Product extends IdPrimaryKey {
 
     @Column("int")
     category_id: number;
@@ -63,5 +53,5 @@ import {
       (productImage) => productImage.product
     )
     images : ProductImage ;
-  }
+}
   

@@ -10,7 +10,7 @@ import { SendMessageDto } from '../../../whatsapp/dto/send-message.dto';
 import { WhatsappService } from '../../../whatsapp/whatsapp.service';
 import * as _ from "lodash";
 import { ShoppingCart } from '../../../entities/shopping-cart.entity';
-import { CartDetail } from 'src/entities/cart-detail.entity';
+import { CartDetail } from '../../../entities/cart-detail.entity';
 import { ConektaService } from '../../../conekta/conekta.service';
 import { OrderDto } from '../../../conekta/dto/order.dto';
 import { CustomerDto } from '../../../conekta/dto/customer.dto';
@@ -21,12 +21,12 @@ import { Order } from '../../../entities/order.entity';
 export class OrderService {
     
     constructor(
-        @InjectRepository(ShoppingCartRepository) private shoppingCartRepository: ShoppingCartRepository,
         @InjectRepository(OrderRepository) private orderRepository: OrderRepository,
+        @InjectRepository(ShoppingCartRepository) private shoppingCartRepository: ShoppingCartRepository,
         private whatsappService: WhatsappService,
         private conektaService: ConektaService,
-    ) {}
-
+    ){}
+  
     async create(userLogged: User, tokenDto: TokenDto, orderInfoDto:OrderInfoDto): Promise<{order_id: number}>{
         const shoppingCart = await this.shoppingCartRepository.findProcess(tokenDto);
         
