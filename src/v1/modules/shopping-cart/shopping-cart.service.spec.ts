@@ -126,4 +126,32 @@ describe('ShoppingCartService', ()=>{
             expect(result).toEqual(result);
         });
     });
+
+
+    describe('verifyProcess',()=>{
+        it('calls ShoppingCartService.verifyProcess and return the result', async ()=>{
+            shoppingCartRepository.findProcess.mockResolvedValue(mockShoppingCart);
+            const result = await shoppingCartService.verifyProcess(mockToken);
+            expect(result).toEqual(result);
+        });
+    });
+
+    describe('verifyProduct',()=>{
+        it('calls ShoppingCartService.verifyProduct and return the result', async ()=>{
+            const mockProduct ={
+                id: 191,
+                category_id: 5,
+                friendly_url: '1-de-kg-de-cochinita',
+                name: '1 de Kg de cochinita',
+                description: '1 de Kg de cochinita',
+                price: 260,
+                position: 1,
+                available: 1
+            };
+            productRepository.findOne.mockResolvedValue(mockProduct);
+            const cartAddItemDto = {product_id:191,qty:1};
+            const result = await shoppingCartService.verifyProduct(cartAddItemDto);
+            expect(result).toEqual(result);
+        });
+    });
 });

@@ -54,6 +54,7 @@ export class OrderService {
     }
    
     async createPaymentInstructions(shoppingCart: ShoppingCart,orderInfoDto:OrderInfoDto,order_id:number): Promise<OrderDto> {
+        return null;
         const { payment_type } = orderInfoDto;
         if(payment_type == PaymentType.CASH){
             return null;
@@ -108,6 +109,7 @@ export class OrderService {
     }
 
     async list(userLogged: User): Promise<{orders:Order[]}>{
+        console.log(userLogged);
         const orders = await this.orderRepository.findOrders(userLogged);
         return { orders };
     }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 11-12-2021 a las 17:55:53
+-- Tiempo de generación: 12-12-2021 a las 07:53:35
 -- Versión del servidor: 5.7.16
 -- Versión de PHP: 5.6.30
 
@@ -447,13 +447,6 @@ CREATE TABLE `shopping_carts` (
   `expires_at` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `shopping_carts`
---
-
-INSERT INTO `shopping_carts` (`id`, `public_id`, `total`, `expires_at`) VALUES
-(18, 'b2cb4696-45a0-473b-8d09-4ebd6c15adbb', 0.00, 1639268425);
-
 -- --------------------------------------------------------
 
 --
@@ -760,7 +753,7 @@ ALTER TABLE `card_payments`
 -- AUTO_INCREMENT de la tabla `cart_details`
 --
 ALTER TABLE `cart_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `categories`
@@ -790,19 +783,19 @@ ALTER TABLE `mycodes`
 -- AUTO_INCREMENT de la tabla `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3927;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3931;
 
 --
 -- AUTO_INCREMENT de la tabla `order_deliveries`
 --
 ALTER TABLE `order_deliveries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5260;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5264;
 
 --
 -- AUTO_INCREMENT de la tabla `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6104;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6109;
 
 --
 -- AUTO_INCREMENT de la tabla `payments`
@@ -862,7 +855,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `shopping_carts`
 --
 ALTER TABLE `shopping_carts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `stores`

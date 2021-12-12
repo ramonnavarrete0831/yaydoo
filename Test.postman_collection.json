@@ -1,0 +1,310 @@
+{
+	"info": {
+		"_postman_id": "e0a98083-cb79-4326-b620-49327056c59d",
+		"name": "Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Recurso : Login User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "username",
+						"value": "9995511847",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "password",
+						"value": "N@varret3",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "9992743290",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "N@varret3",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8301/auth/sign-in",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8301",
+					"path": [
+						"auth",
+						"sign-in"
+					]
+				},
+				"description": "Descripción : Método que verifica la validez de un usuario, esta recurso proporciona acceso a la api con JWT.\n\nRequest params:\n    username \n    password\n    \nResult : \n{\n    accessToken: \"XXX\",\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "Recurso : Lista de productos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "  product\n",
+							"value": "Tacos",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8301/v.1/product/list?page=1&limit=1&sku=184&product=torta&category=tortas&min_price=16&max_price=50",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8301",
+					"path": [
+						"v.1",
+						"product",
+						"list"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "1"
+						},
+						{
+							"key": "sku",
+							"value": "184"
+						},
+						{
+							"key": "product",
+							"value": "torta"
+						},
+						{
+							"key": "category",
+							"value": "tortas"
+						},
+						{
+							"key": "min_price",
+							"value": "16"
+						},
+						{
+							"key": "max_price",
+							"value": "50"
+						}
+					]
+				},
+				"description": "Descripción : Método que retorma la lista de productos, realiza filtros por médio  de parámetros, retorna la paginación.\n\nRequest params:\n    page\n    limit\n    sku\n    product\n    category\n    min_pricemax_price\n\nResult : \n{\n    \"products\": [],\n    \"meta\": {\n        \"totalItems\": 1,\n        \"itemCount\": 1,\n        \"itemsPerPage\": 1,\n        \"totalPages\": 1,\n        \"currentPage\": 1\n    },\n    \"links\": {\n        \"first\": \"\",\n        \"previous\": \"\",\n        \"next\": \"\",\n        \"last\": \"\"\n    }\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "Recurso : Crear proceso de carrito",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8301/v.1/shopping-cart/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8301",
+					"path": [
+						"v.1",
+						"shopping-cart",
+						"create"
+					]
+				},
+				"description": "Descripción : Método crea el número de proceso del carrito de compras para su manipulación.\n\nResult : \n{\n    public_id: \"XXX\",\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "Recurso : Retornar detalle de carro",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8301/v.1/shopping-cart/ef1c8a96-6d39-4b1d-9f6c-f5ffa6e8d216",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8301",
+					"path": [
+						"v.1",
+						"shopping-cart",
+						"ef1c8a96-6d39-4b1d-9f6c-f5ffa6e8d216"
+					]
+				},
+				"description": "Descripción : Método que retorna la información del carrito de compras\n\nurl :\n    public_id : \"ef1c8a96-6d39-4b1d-9f6c-f5ffa6e8d216\"\n\nv.1/shopping-cart/ef1c8a96-6d39-4b1d-9f6c-f5ffa6e8d216\n    \nResult : \n{\n    \"shoppingCart\": {\n        \"id\": 25,\n        \"public_id\":        \"ef1c8a96-6d39-4b1d-9f6c-f5ffa6e8d216\",\n        \"total\": 0,\n        \"expires_at\": 1639314981,\n        \"cartDetail\": []\n    }\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "Recurso : Agregar producto al carrito ",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "product_id",
+							"value": "191",
+							"type": "text"
+						},
+						{
+							"key": "qty",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8301/v.1/shopping-cart/add-item/56780ddc-71fe-4c3d-ab2e-c38811189bc0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8301",
+					"path": [
+						"v.1",
+						"shopping-cart",
+						"add-item",
+						"56780ddc-71fe-4c3d-ab2e-c38811189bc0"
+					]
+				},
+				"description": "Descripción : Método que añade el producto al carrito de compra y calcula el importe a pagar.\n\nurl :\n    public_id : \"ef1c8a96-6d39-4b1d-9f6c-f5ffa6e8d216\"\n\nv.1/shopping-cart/add-item/ef1c8a96-6d39-4b1d-9f6c-f5ffa6e8d216\n\n\nRequest params:\n    product_id\n    qty\n    \nResult : \n{\n    \"cartDetail\": {\n        \"id\": 13,\n        \"product_id\": 191,\n        \"name\": \"1 de Kg de cochinita\",\n        \"price\": 260,\n        \"qty\": 1,\n        \"total\": 260\n    }\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "Recurso : Eliminar producto del carrito de compras",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8301/v.1/shopping-cart/remove/ef1c8a96-6d39-4b1d-9f6c-f5ffa6e8d216/12",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8301",
+					"path": [
+						"v.1",
+						"shopping-cart",
+						"remove",
+						"ef1c8a96-6d39-4b1d-9f6c-f5ffa6e8d216",
+						"12"
+					]
+				},
+				"description": "Descripción : Método que elimina el producto del carrito de compra y calcula el importe a pagar.\n\nurl :\n    public_id : \"ef1c8a96-6d39-4b1d-9f6c-f5ffa6e8d216\"\n    id: 12\n\nv.1/shopping-cart/remove/ef1c8a96-6d39-4b1d-9f6c-f5ffa6e8d216/12\n\n    \nResult : "
+			},
+			"response": []
+		},
+		{
+			"name": "Recurso : Crear orden de compra",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZV9pZCI6NSwicm9sZSI6ImN1c3RvbWVyIiwibGFzdF9wYXNzd29yZF91cGRhdGUiOjE2MjExNzc0NDIsImRldmljZSI6IldFQi1CUk9XU0VSIiwiaWF0IjoxNjM5MjY3MjY5LCJleHAiOjE2MzkzNTM2Njl9.MIqHGt-c5vi453xxN7_poyayP5HM0pPljjMKDDbeJ9Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "address",
+							"value": "C 129 #441 x 50 y 52 Col. San José Tecoh",
+							"type": "text"
+						},
+						{
+							"key": "payment_type",
+							"value": "spei",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8301/v.1/order/create/ef1c8a96-6d39-4b1d-9f6c-f5ffa6e8d216",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8301",
+					"path": [
+						"v.1",
+						"order",
+						"create",
+						"ef1c8a96-6d39-4b1d-9f6c-f5ffa6e8d216"
+					]
+				},
+				"description": "Descripción : Método que crea la orden de compra, crea instrucciones de pago y envía whatsapp.\n\nAuthorization: Bearer JWT\n\nurl :\n    public_id : \"ef1c8a96-6d39-4b1d-9f6c-f5ffa6e8d216\"\n\nv.1/order/create/56780ddc-71fe-4c3d-ab2e-c38811189bc0\n    \n    \nResult : \n{\n    \"order_id\": 3930\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "Recurso : Listar ordenes de compra",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZV9pZCI6NSwicm9sZSI6ImN1c3RvbWVyIiwibGFzdF9wYXNzd29yZF91cGRhdGUiOjE2MjExNzc0NDIsImRldmljZSI6IldFQi1CUk9XU0VSIiwiaWF0IjoxNjM5MjM5NjgwLCJleHAiOjE2MzkzMjYwODB9.HuX7fcbXHm5OMeeOMEiUR1wBlSa-YiJXt8uXE5NwW6o",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8301/v.1/order/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8301",
+					"path": [
+						"v.1",
+						"order",
+						"list"
+					]
+				},
+				"description": "Descripción : Método para obtener la lista de todas las ordenes de compra del usuario.\n\nAuthorization: Bearer JWT\n\nResult : \n{\n    \"orders\": []\n}"
+			},
+			"response": []
+		}
+	]
+}
