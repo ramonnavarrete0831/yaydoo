@@ -27,7 +27,7 @@ export class OrderService {
         private conektaService: ConektaService,
     ) {}
 
-    async create(userLogged: User, tokenDto: TokenDto, orderInfoDto:OrderInfoDto): Promise<{public_id: string}>{
+    async create(userLogged: User, tokenDto: TokenDto, orderInfoDto:OrderInfoDto): Promise<{order_id: number}>{
         const shoppingCart = await this.shoppingCartRepository.findProcess(tokenDto);
         
         if(!shoppingCart){
@@ -50,7 +50,7 @@ export class OrderService {
         const payment : OrderDto = await this.createPaymentInstructions(shoppingCart,orderInfoDto,order_id);
         await this.sendDetail(userLogged,shoppingCart,orderInfoDto,payment,public_id,order_id);
 
-        return {public_id};
+        return {order_id};
     }
    
     async createPaymentInstructions(shoppingCart: ShoppingCart,orderInfoDto:OrderInfoDto,order_id:number): Promise<OrderDto> {

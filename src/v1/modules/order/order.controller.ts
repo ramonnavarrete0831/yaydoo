@@ -14,10 +14,10 @@ export class OrderController {
 
     @UseGuards(AuthGuard())
     @Post("create/:token")
-    async create(@GetUser() userLogged: User,@Param(ValidationPipe) tokenDto: TokenDto,  @Body(ValidationPipe) orderInfoDto:OrderInfoDto): Promise<{public_id: string}>{
+    async create(@GetUser() userLogged: User,@Param(ValidationPipe) tokenDto: TokenDto,  @Body(ValidationPipe) orderInfoDto:OrderInfoDto): Promise<{order_id: number}>{
       this.logger.verbose(`realiza petición para processar la orden de compra`);
-      const public_id = await this.orderService.create(userLogged,tokenDto,orderInfoDto);
-      return public_id;
+      const order_id = await this.orderService.create(userLogged,tokenDto,orderInfoDto);
+      return order_id;
     }
 
     @UseGuards(AuthGuard())
